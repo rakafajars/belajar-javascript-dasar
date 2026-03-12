@@ -1,0 +1,104 @@
+/* Me-reset sifat asal usul margin gap dan padding (ganjalan dalam luar) bawaan rahasia setiap browser yang seringkali beda-beda ngeganggu desain sendiri */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Membuat sebuah Pembungkus Layout / Container yang mengurung semua konten supaya web nya tidak melebar norak memenuhi full sepanjang layar */
+/* Cocok dengan div yang memiliki class 'container' di index.html */
+.container {
+  max-width: 960px;   /* Maksimal lebar yang diperbolehkan melar adalah selebar 960 pixel */
+  margin: 0 auto;     /* Trik sulap ajaib css klasik: 0 itu atas-bawah gak ada jarak margin luar ruang gap, 'auto' itu menempatkan dia membagi margin sisi kiri kanan simetris rata hingga hasilnya si kotak container ini berada ke TENGAH layar rapi */
+  min-height: 100vh;  /* Menjamin tinggi bungkus containernya setidaknya sepuas setinggi layar gadgetnya utuh (Viewport Height) biarpun isi tugasnya sepi masih tetep tinggi membentang 100% turun  */
+  padding: 20px;      /* Memberi ganjelan dalam ruang kosong supaya jarak konten dalam gak sampe nusuk pinggiran pojok-pojok bodi web, terlihat sesak, nafas ruang minimal sisa jarak 20px */
+}
+
+/* Mengatur wadah Tag HTML 'form'  buat letak-letaknya posisi kotak-kotak didalamnya */
+.form {
+  display: flex;             /* Merubah mesin rendering posisi di CSS nya menuruti aturan aliran barisan gaya Flexbox modern, biar gampang dilurus-lurusin */
+  flex-direction: column;    /* Aliran susunan perabotan ruang yang dimasukan di flexbox nya tidak ngangkang ke samping, tapi tersusun urut mengalir turun numpuk dari atas ke bawah bagaikan pilar kolom menara (Column)  */
+  gap: 10px;                 /* Tiap isi susunanya itu dikasih semacam lobang pembatas antar jarak 1 baris sebesar ruangan 10px gap nya */
+}
+
+/* Aturan buat group pembungkus antara si inputan teks form dan si label atasnya. Keturunan/Grup per barisnya milik daleman flex .form */
+.form > .form-group {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Varian turunan special yang dirancang kusus jika kita melempar property tambahan modifier 'form-group--button-right'  di barisna tombol */
+.form-group.form-group--button-right {
+  display: flex;
+  flex-direction: row;        /* Nah khusus ini urutanya dirakit melintang Mendatar pinggir-pinggiran, buat apasih?, biar tombolnya mepet bisa disetting merapat di  */
+  justify-content: flex-end;  /* ... flex-end! ya dia memaksa seisi kotak diarahkaun melayang geser mentok bersandar ke akhir pelabuhan yakni nempel ke KANAN habis! */
+}
+
+/* Desain styling khusus secuil Teks tulisan label seperti tulisan 'Mau ngapain hari ini?'  */
+.form > .form-group > .form-label {
+  margin-bottom: 5px; /* Ngasih jarak sepatu telapak 5px buat dia supaya tidak melengket dan ada sela nafas menyentuh input text box dibawah moncong badannya persis */
+}
+
+/* Desain stlye kotak box input buat ngetiknya kusus */
+.form > .form-group > .form-input {
+  padding: 10px;      /* Memperbesar bantalan bantal tebal di dalam kotak teks text box biar nggak kurus kerempeng area dalam ngetiknya enak napas nggak numbur tembok */
+  font-size: 16px;    /* Melebar besarin sedikit huruf font dasar 16 biar nggak kekecilan sepet di mata*/
+}
+
+/* Aturan custom input modifier agar memanjang selebar-bebarnya menyamakan dengan max panjang layar/ container */
+.form-input.form-input--full {
+  width: 100%;        /* Memaksakan selebar full 100% dari tembok tempat dia singgah nyantol (di kasus iniform-group induknya meres melar selebar layar container maksimalny 960) */
+  display: block;     /* Nggak boleh nurunin ke sampingan, memblok sebarisan itu seolah jadi block kotak keras */
+}
+
+/* Tombol nya ini sengaja cuma dipake inline */
+.button {
+  display: inline-block;
+  /* (Biasanya tombol CSS dilengkapi padding bulat pojok / background warnaan tambahan agar cantik, dikte kamu bereksperimen ngembangin warna style nyadisini) */
+}
+
+/* Pembungkus bagian grup agenda-agenda "Agendaku" List ke bawahnya */
+.tasks {
+  display: flex;            /* Flexbox turun */
+  flex-direction: column;   /* Tiang berdirian kolom barisan-barisan tasks urut nimpa ke bawah  */
+  gap: 10px;
+}
+
+/* Wrapper Ul tag si kontainer list utamanya. */
+.tasks > .tasks-list {
+  display: flex;            /* Biar si anaknya "<li>" mematuhi gaya turun mengalir pake  kolom-kolom  numput seperti rak laci-laci*/
+  flex-direction: column; 
+  gap: 10px;                /* Memisahkan sela spasi tiap satu tugas dan tugas 2 yg tumpang tindih berjejer renggang 10px */
+  padding-left: 0;          /* Menyembuhkan bawaannya browser kalo pake 'ul' biasa geserjorok  masuk indent ngasih ruangan 40px spasi kiri. kita nolin hilangkan biar balok lacinya lempeng nempel ke pinggir rata kiri 0  */
+}
+
+/* Mematikan icon logo buletan titik disetiap pinggir kiri 'li', karna aslinya bawaan nya li kalau nge rendering slallu nambahin titik butiran item disamping kiri nya menganggu */
+.tasks-list > .tasks-list-item {
+  list-style: none; /* 'none' = hilangkan titik-titik point tersebut buang ajah ga perlu pakai gituan ga cantik */
+}
+
+/* Desain kotak List dalam nya nih per 1 balok bariss  "Belajar Javascript" DLL  dalam "<li>" task ny*/
+.tasks-list-item > .task {
+  padding: 10px;                   /* Balok List tugasnya gendutin kasur dalemanya setebel 10px */
+  display: flex;                   /* Menyulap anaknya jadi flow perabotan flex , ngedatar dari arah kiri-kanan kesamping   */
+  flex-direction: row;             /* Elemen baris barisan laci didalamnya berbaris Mendatar lurus dari kiri menuju kakanan (Row=Baris melintang)  */
+  justify-content: space-between;  /* Aturan paling ajaib seisi jagad Flexbox! Elemen-eleman terpisah dengan renggang memisah-misahkan melar jauh terdorong satu sama lain secara maksimal sampai ujung tepian! otomatis ninggalin spasi sisa kosong ditngah */
+  align-items: center;             /* Meratakan se-semua balok-balok tinggi ceper ditengahnya agar nyentrik dilurusin rata tengat-tengah tengah poros horisontal secara vertikal membelah 1 baris sama adil lurus tengah  */
+  gap: 10px;
+  border: 1px solid #ccc;          /* Bikin pinggiraan garis tepi perbatasan lis tebalnya 1 pixel diwarna gores coretan Abu-abu terang kusam kode heks warna : '#ccc'  */
+}
+
+/* Set Teks judul list tugas dalemnya (kayak tulisan Belajar javascript) dibikin merelax stretch melar  */
+.tasks-list-item > .task > .task-title {
+  display: block;   /* Standar block */
+  flex: 1;          /* Rumus sihir agar dia merenggang melar 'Serakah' nyomot area kosong di baris row nya (inget kan diatas pake space between sisa byk spasi ditengah). jdnya karena sifat flex: 1 si judul jadi menggendut ngusir ke kanan tombol 'Hapus' jauh-jauh ke mentok kanan layar beres  */
+}
+
+/* Apelila kotak list punya ter-add sisipan class alias "checked" di HTML nya by si JS krn dipencet, ini bakal dibaca dan bereaksi meng-ngecap warna latar background nya kotak tesrbut ijo sukses..*/
+.tasks-list-item.checked {
+  background-color: #d4edda; /* Coretan cat Kode warna hijau soft-pastel ala warna (mint) lambang sukses di bootstrap   */
+}

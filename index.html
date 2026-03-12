@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kegiatan Sehari-hari</title>
+    <!-- Menghubungkan file CSS untuk memberikan gaya (style/desain) pada halaman HTML ini -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Container utama untuk membungkus seluruh konten agar letaknya tidak mentok ke pinggir layar -->
+    <div class="container">
+      <!-- Form untuk menginputkan kegiatan baru. ID 'taskForm' akan dipanggil dan "ditangkap" di JavaScript -->
+      <form class="form" id="taskForm">
+        <div class="form-group">
+          <!-- Label penjelasan untuk input teks di bawahnya -->
+          <label for="taskTitle" class="form-label">
+            Mau ngapain hari ini?
+          </label>
+          <!-- Kotak input tempat user mengetik teks kegiatan. ID 'taskTitle' digunakan di JavaScript untuk mengambil kembali kalimat yang diketik user -->
+          <input
+            type="text"
+            class="form-input form-input--full"
+            id="taskTitle"
+            name="taskTitle"
+            placeholder="Masukkan kegiatan..."
+          />
+        </div>
+        <!-- Wadah untuk memosisikan tombol submit di sebelah Kanan karena memakai class 'form-group--button-right' -->
+        <div class="form-group form-group--button-right">
+          <!-- Tombol bertipe 'submit' akan memicu event 'submit' pada tag form di atas -->
+          <button class="button" type="submit">Simpan</button>
+        </div>
+      </form>
+
+      <!-- Bagian wadah bawah yang khusus menampilkan daftar tugas/kegiatan -->
+      <div class="tasks">
+        <h2 class="task-title">Agendaku</h2>
+        <!-- Tempat (wadah kosong berupa list <ul>) untuk daftar tugas. Nanti JavaScript akan menambahkan otomatis elemen '<li>' ke dalam <ul> ini. ID 'tasksList' dipanggil di JS -->
+        <ul class="tasks-list" id="tasksList">
+          <!-- (Kosong di awal, akan diisi dinamis oleh app.js) -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Menghubungkan script logika JavaScript agar interaksi di halaman HTML ini bisa berjalan hidup -->
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
